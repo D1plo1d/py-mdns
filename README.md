@@ -1,13 +1,36 @@
-py-mdns
-  - Simple python api for common zeroconf mdns operations.
+# py-mdns
+A simple python api for common zeroconf mdns operations. Py-MDNS uses the OS's native MDNS utilities to publish and find discoverable services.
 
-Current Status:
+## Installation
+
+1. `git clone git@github.com:D1plo1d/py-mdns.git`
+2. `cd py-mdns`
+3. `sudo python setup.py install`
+
+
+## Example Usage
+
+### Publishing a Service
+
+```python
+import mdns
+
+# This will add a new "my_test" discoverable service
+# to the locahost's MDNS service daemon (bonjour or avahi).
+services = ({'type': 'my_test', 'port': 1234})
+mdns.publisher().save_group({'name': 'test', 'services': services })
+```
+
+
+## Development
+
+### Current Status
   - Abstracted backend mechanism from regular API usage.
   - Unit test framework in place.
   - Avahi Publisher is working.
   - Example publisher & resolver is working.
 
-Project Goals:
+### Project Goals
   - Will initially be based from avahi api. Should
     interface what we can to allow for future Bonjour impl.
   - Mostly does mdns publish & lookup.
