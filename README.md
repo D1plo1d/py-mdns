@@ -17,8 +17,8 @@ import mdns
 
 # This will add a new "my_test" discoverable service
 # to the locahost's MDNS service daemon (bonjour or avahi).
-services = ({'type': 'my_test', 'port': 1234})
-mdns.publisher().save_group({'name': 'test', 'services': services })
+services = ({'type': '_my_test._tcp', 'port': 1234, 'domain': "local."})
+mdns.publisher().save_group({'name': 'my_test', 'services': services })
 ```
 
 
