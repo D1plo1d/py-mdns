@@ -15,10 +15,10 @@ class Backend:
     
     def save_group(self, servicegroup, alternate_location=None):
         for service in servicegroup.services:
-            self.add_service(service)
+            self.add_service(servicegroup.name, service)
 
-    def add_service(self, service):
-        sdRef = pybonjour.DNSServiceRegister(name = service.name,
+    def add_service(self, name, service):
+        sdRef = pybonjour.DNSServiceRegister(name = name,
                                             regtype = service.type,
                                             port = service.port,
                                             domain = "local.")
