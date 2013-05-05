@@ -14,14 +14,14 @@ class Backend:
         print "NOT IMPLEMENTED"
     
     def save_group(self, servicegroup, alternate_location=None):
-        name = servicegroup['name']
-        self.add_service(name, servicegroup['services'])
+        for service in servicegroup.services:
+            self.add_service(service)
 
-    def add_service(self, name, opts):
-        sdRef = pybonjour.DNSServiceRegister(name = name,
-                                            regtype = opts['type'],
-                                            port = opts['port'],
-                                            domain = opts['domain'])
+    def add_service(self, service):
+        sdRef = pybonjour.DNSServiceRegister(name = service.name,
+                                            regtype = service.type,
+                                            port = service.port,
+                                            domain = "local.")
         atexit.register(self.cleanup_service, sdRef)
 
     def cleanup_service(self, sdRef):
